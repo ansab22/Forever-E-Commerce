@@ -55,7 +55,7 @@ function navBar() {
         {/* Create Header for Small Devices */}
 
         <div
-          className={`absolute top-0 right-0 bottom-0 overflow-hidden bg-white transition-all ${
+          className={`absolute top-0 right-0 bottom-0 overflow-hidden bg-white transition-all duration-1000 ${
             visible ? "w-full" : "w-0"
           }`}
         >
@@ -75,25 +75,25 @@ function navBar() {
             <ul className="sm:flex gap-5 text-sm text-gray-700 p-3">
               <li
                 onClick={() => setVisible(false)}
-                className="text-[18px] text-gray-500 active:text-black cursor-pointer py-2  "
+                className="text-[18px] text-gray-800  active:text-white active:bg-black cursor-pointer py-2  "
               >
                 <Link href="/">Home</Link>
               </li>
               <li
                 onClick={() => setVisible(false)}
-                className="text-[18px] text-gray-500 active:text-black cursor-pointer py-2"
+                className="text-[18px] text-gray-800  active:text-white active:bg-black cursor-pointer py-2 "
               >
                 <Link href="/">Collection</Link>
               </li>
               <li
                 onClick={() => setVisible(false)}
-                className="text-[18px] text-gray-500 active:text-black cursor-pointer py-2  "
+                className="text-[18px] text-gray-800 active:text-white active:bg-black  cursor-pointer py-2  "
               >
                 <Link href="/">About</Link>
               </li>
               <li
                 onClick={() => setVisible(false)}
-                className="text-[18px] text-gray-500 active:text-black cursor-pointer py-2 "
+                className="text-[18px] text-gray-800  active:text-white active:bg-black cursor-pointer py-2 "
               >
                 <Link href="/">Contact</Link>
               </li>
