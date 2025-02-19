@@ -1,6 +1,7 @@
 import React from "react";
+import { assets } from "@/assets/assets";
 
-function hero() {
+function heroBanner() {
   return (
     <>
       <div className="flex flex-col sm:flex-row border border-gray-400 ">
@@ -25,10 +26,10 @@ function hero() {
           </div>
         </div>
         {/* hero right side */}
-        <img className="w-full sm:w-1/2" src={`/images/hero_img.png`} alt="" />
+        <img className="w-full sm:w-1/2" src={assets.hero_img} alt="" />
       </div>
     </>
   );
 }
 
-export default hero;
+export default heroBanner;
