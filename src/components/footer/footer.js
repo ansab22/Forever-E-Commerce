@@ -18,7 +18,7 @@ function footer() {
           <p className="text-gray-600 text-sm sm:text-sm md:text-sm lg:text-xl font-semibold">
             COMPANY
           </p>
-          <ul className="sm:mt-7 mt-4 flex flex-col sm:gap-2  gap-1 text-sm sm:text-sm md:text-sm lg:text-xl text-gray-600 cursor-pointer">
+          <ul className="sm:mt-7 mt-4 flex flex-col sm:gap-2  gap-1 text-sm sm:text-sm md:text-sm lg:text-xl text-gray-500 cursor-pointer">
             <li className="hover:text-black">Home</li>
             <li className="hover:text-black">About Us</li>
             <li className="hover:text-black">Delivery</li>
@@ -29,7 +29,7 @@ function footer() {
           <p className="text-gray-600 text-sm sm:text-sm md:text-sm lg:text-xl font-semibold">
             GET IN TOUCH
           </p>
-          <ul className="sm:mt-7 mt-4 flex flex-col sm:gap-2  gap-1 text-sm sm:text-sm md:text-sm lg:text-xl text-gray-600 cursor-pointer ">
+          <ul className="sm:mt-7 mt-4 flex flex-col sm:gap-2  gap-1 text-sm sm:text-sm md:text-sm  text-gray-500 cursor-pointer ">
             <li className="hover:text-black">9-82387327-1</li>
             <li className="hover:text-black">info@trisagesolution.com</li>
           </ul>
