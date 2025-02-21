@@ -5,11 +5,12 @@ import ProductItem from "@/components/productItem/productItem";
 import Title from "@/components/title/title";
 
 function collections() {
-  const { products } = useContext(ShopContext);
+  const { products, search, showSearch } = useContext(ShopContext);
   const [showFilter, setShowFilter] = useState(false);
   const [filterProducts, setFilterProducts] = useState([]);
   const [category, setCategory] = useState([]);
   const [subCategory, setSubCategory] = useState([]);
+  const [sortType, setSortType] = useState("relavent");
 
   const toggleCategory = (e) => {
     const value = e.target.value;
@@ -32,6 +33,11 @@ function collections() {
   const applyFilter = () => {
     let productsCopy = products.slice();
 
+    if (showSearch && search) {
+      productsCopy = productsCopy.filter((item) =>
+        item.name.toLowerCase().includes(search.toLowerCase())
+      );
+    }
     // Filter by category
     if (category.length > 0) {
       productsCopy = productsCopy.filter((item) =>
@@ -50,13 +56,32 @@ function collections() {
     setFilterProducts(productsCopy);
   };
 
+  const sortProduct = () => {
+    let fpCopy = filterProducts.slice();
+    switch (sortType) {
+      case "low-high":
+        setFilterProducts(fpCopy.sort((a, b) => a.price - b.price));
+        break;
+      case "high-low":
+        setFilterProducts(fpCopy.sort((a, b) => b.price - a.price));
+        break;
+      default:
+        applyFilter();
+        break;
+    }
+  };
+
   useEffect(() => {
-    setFilterProducts(products); // Initialize with all products
+    setFilterProducts(products);
   }, [products]);
 
   useEffect(() => {
-    applyFilter(); // Apply filters whenever category or subCategory changes
-  }, [category, subCategory]);
+    applyFilter();
+  }, [category, subCategory, search, showSearch]);
+
+  useEffect(() => {
+    sortProduct();
+  }, [sortType]);
 
   return (
     <>
@@ -158,9 +183,12 @@ function collections() {
           <div className="flex flex-col sm:flex-col md:flex-col lg:flex-row justify-between text-base sm:text-2xl mb-4">
             <Title text1={"ALL "} text2={"COLLECTIONS"} />
             {/* SORT OPTIONS */}
-            <select className="border-[1px] w-[42%] sm:w-[18%] md:w-[40%] lg:w-[26%] border-gray-300 sm:text-sm text-xs px-0 sm:px-1">
+            <select
+              onChange={(e) => setSortType(e.target.value)}
+              className="border-[1px] w-[42%] sm:w-[18%] md:w-[40%] lg:w-[26%] border-gray-300 sm:text-sm text-xs px-0 sm:px-1"
+            >
               <option value="relavent">Sort by: Relavent</option>
-              <option value="Low-high">Sort by: Low-High</option>
+              <option value="low-high">Sort by: Low-High</option>
               <option value="high-low">Sort by: High-Low</option>
             </select>
           </div>

@@ -1,30 +1,43 @@
-import React, { useState } from "react";
-import Link from "next/link";
+import React, { useState, useContext } from "react";
+import { ShopContext } from "../context/shopContext";
 import { assets } from "@/assets/assets";
+
+// Codeee
 function navBar() {
   const [visible, setVisible] = useState(false);
+  const { setShowSearch } = useContext(ShopContext);
   return (
     <>
       <div className="flex items-center justify-between py-5 font-medium bg-white">
-        <img src={assets.logo} className="w-36" />
+        <img src={assets.logo} className="w-36 cursor-pointer" />
         <ul className="hidden sm:flex gap-5 text-sm text-gray-700">
           <li className="text-[16px] text-gray-600 active:text-black cursor-pointer  ">
-            <Link href="/">Home</Link>
+            <a href="/">Home</a>
           </li>
           <li className="text-[16px] text-gray-600 active:text-black cursor-pointer ">
-            <Link href="/">Collection</Link>
+            <a href="/collections">Collection</a>
           </li>
           <li className="text-[16px] text-gray-600 active:text-black cursor-pointer ">
-            <Link href="/">About</Link>
+            <a href="/">About</a>
           </li>
           <li className="text-[16px] text-gray-600 active:text-black cursor-pointer ">
-            <Link href="/">Contact</Link>
+            <a href="/">Contact</a>
           </li>
         </ul>
         <div className="flex items-center gap-4">
-          <img src={assets.search_icon} alt="" className="w-[18px]" />
+          {/* Search Icon */}
+          <img
+            onClick={() => setShowSearch((prev) => !prev)} // Toggle showSearch
+            src={assets.search_icon}
+            alt="Search"
+            className="w-[18px] cursor-pointer"
+          />
           <div className="group relative">
-            <img src={assets.profile_icon} alt="" className="w-[18px] " />
+            <img
+              src={assets.profile_icon}
+              alt=""
+              className="w-[18px] cursor-pointer "
+            />
             <div className="group-hover:block hidden absolute dropdown-menu right-0 pt-4">
               <div className="flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-500 rounded">
                 <p className="cursor-pointer hover:text-black">My Profile</p>
@@ -74,25 +87,25 @@ function navBar() {
                 onClick={() => setVisible(false)}
                 className="text-[18px] text-gray-800  active:text-white active:bg-black cursor-pointer py-2  "
               >
-                <Link href="/">Home</Link>
+                <a href="/">Home</a>
               </li>
               <li
                 onClick={() => setVisible(false)}
                 className="text-[18px] text-gray-800  active:text-white active:bg-black cursor-pointer py-2 "
               >
-                <Link href="/">Collection</Link>
+                <a href="/collections">Collection</a>
               </li>
               <li
                 onClick={() => setVisible(false)}
                 className="text-[18px] text-gray-800 active:text-white active:bg-black  cursor-pointer py-2  "
               >
-                <Link href="/">About</Link>
+                <a href="/">About</a>
               </li>
               <li
                 onClick={() => setVisible(false)}
                 className="text-[18px] text-gray-800  active:text-white active:bg-black cursor-pointer py-2 "
               >
-                <Link href="/">Contact</Link>
+                <a href="/">Contact</a>
               </li>
             </ul>
           </div>
