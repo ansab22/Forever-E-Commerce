@@ -9,6 +9,7 @@ function productId({ slug }) {
   const [productData, setProductData] = useState(null);
   const [image, setImage] = useState("");
   const [selectedSize, setSelectedSize] = useState("");
+  const [activeTab, setActiveTab] = useState("description");
 
   useEffect(() => {
     if (slug && products) {
@@ -25,7 +26,7 @@ function productId({ slug }) {
   }
 
   // Calculate the total number of items in the cart
-  const cartItemCount = Object.values(cartItems).reduce(
+  const cartItemCount = Object.values(cartItems || {}).reduce(
     (acc, curr) => acc + curr,
     0
   );
@@ -35,7 +36,7 @@ function productId({ slug }) {
       <div className="flex gap-12 sm:gap-12 flex-col sm:flex-row">
         <div className="flex-1 flex flex-col-reverse sm:flex-row gap-3">
           <div className="flex sm:flex-col overflow-x-auto sm:overflow-y-scroll justify-between sm:justify-normal sm:w-[18.7%] w-full">
-            {productData.image.map((item, index) => (
+            {productData.image?.map((item, index) => (
               <img
                 src={item}
                 key={index}
@@ -70,7 +71,7 @@ function productId({ slug }) {
             <div className="flex flex-col gap-4 my-8">
               <p>Select Size</p>
               <div className="flex gap-2">
-                {productData.sizes.map((item, index) => (
+                {productData.sizes?.map((item, index) => (
                   <button
                     onClick={() => setSelectedSize(item)}
                     className={`border py-2 px-4 bg-gray-100 ${
