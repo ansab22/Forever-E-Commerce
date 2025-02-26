@@ -2,13 +2,13 @@ import React, { useContext, useEffect, useState } from "react";
 import { ShopContext } from "@/components/context/shopContext";
 import { assets } from "@/assets/assets";
 import RelatedProducts from "@/components/relatedProducts/relatedProducts";
+import { toast } from "react-toastify";
 
-function ProductId({ slug }) {
-  const { products, currency } = useContext(ShopContext);
+function productId({ slug }) {
+  const { products, currency, addToCart, cartItems } = useContext(ShopContext);
   const [productData, setProductData] = useState(null);
   const [image, setImage] = useState("");
-  const [size, setSize] = useState("");
-  const [activeTab, setActiveTab] = useState("description");
+  const [selectedSize, setSelectedSize] = useState("");
 
   useEffect(() => {
     if (slug && products) {
@@ -24,12 +24,16 @@ function ProductId({ slug }) {
     return <div>Loading...</div>;
   }
 
+  // Calculate the total number of items in the cart
+  const cartItemCount = Object.values(cartItems).reduce(
+    (acc, curr) => acc + curr,
+    0
+  );
+
   return (
     <div className="border-t-2 pt-10 transition-opacity ease-in duration-500 opacity-100">
       <div className="flex gap-12 sm:gap-12 flex-col sm:flex-row">
         <div className="flex-1 flex flex-col-reverse sm:flex-row gap-3">
-          {" "}
-          {/* Changed to flex-row */}
           <div className="flex sm:flex-col overflow-x-auto sm:overflow-y-scroll justify-between sm:justify-normal sm:w-[18.7%] w-full">
             {productData.image.map((item, index) => (
               <img
@@ -48,8 +52,6 @@ function ProductId({ slug }) {
         <div className="flex-1">
           <h1 className="font-medium text-2xl mt-2">{productData.name}</h1>
           <div className="flex flex-col items-start gap-1 mt-2">
-            {" "}
-            {/* Changed to flex-col */}
             <div className="flex items-center gap-1">
               <img src={assets.star_icon} alt="" className="w-3 5" />
               <img src={assets.star_icon} alt="" className="w-3 5" />
@@ -70,9 +72,9 @@ function ProductId({ slug }) {
               <div className="flex gap-2">
                 {productData.sizes.map((item, index) => (
                   <button
-                    onClick={() => setSize(item)}
+                    onClick={() => setSelectedSize(item)}
                     className={`border py-2 px-4 bg-gray-100 ${
-                      item === size ? "border-orange-500" : ""
+                      item === selectedSize ? "border-orange-500" : ""
                     }`}
                     key={index}
                   >
@@ -80,9 +82,23 @@ function ProductId({ slug }) {
                   </button>
                 ))}
               </div>
-              <button className="bg-black text-white px-8 py-3 text-sm active:bg-gray-700">
-                ADD TO CART
-              </button>
+              <div className="flex items-center gap-4">
+                <button
+                  onClick={() => {
+                    if (!selectedSize) {
+                      toast.error(
+                        "Please select a size before adding to cart!"
+                      );
+                      return;
+                    }
+                    addToCart(productData._id, selectedSize);
+                    toast.success("Product added to cart successfully!");
+                  }}
+                  className="bg-black text-white px-8 py-3 text-sm active:bg-gray-700"
+                >
+                  ADD TO CART
+                </button>
+              </div>
               <hr className="mt-8 sm:w-full" />
               <div className="text-sm text-gray-500 mt-5 flex flex-col gap-1">
                 <p>100% Original Product</p>
@@ -173,4 +189,4 @@ function ProductId({ slug }) {
   );
 }
 
-export default ProductId;
+export default productId;
