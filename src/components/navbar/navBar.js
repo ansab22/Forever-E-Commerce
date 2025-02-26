@@ -18,10 +18,10 @@ function navBar() {
             <a href="/collections">Collection</a>
           </li>
           <li className="text-[16px] text-gray-600 active:text-black cursor-pointer ">
-            <a href="/">About</a>
+            <a href="/about">About</a>
           </li>
           <li className="text-[16px] text-gray-600 active:text-black cursor-pointer ">
-            <a href="/">Contact</a>
+            <a href="/contact">Contact</a>
           </li>
         </ul>
         <div className="flex items-center gap-4">
