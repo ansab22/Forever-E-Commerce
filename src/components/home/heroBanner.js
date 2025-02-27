@@ -18,12 +18,9 @@ function heroBanner() {
               Latest Arrivals
             </h1>
             <div className="flex items-center gap-2">
-              <a href="/collections">
-                {" "}
-                <p className="cursor-pointer font-semibold text-sm md:text-base transform hover:scale-105 transition-transform duration-300">
-                  SHOP NOW
-                </p>
-              </a>
+              <p className="cursor-pointer font-semibold text-sm md:text-base transform hover:scale-105 transition-transform duration-300">
+                <a href="/collections">SHOP NOW</a>
+              </p>
               <p className="w-8 md:w-11 h-[2px] bg-[#414141]"></p>
             </div>
           </div>
