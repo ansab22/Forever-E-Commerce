@@ -9,7 +9,9 @@ function navBar() {
   return (
     <>
       <div className="flex items-center justify-between py-5 font-medium bg-white">
-        <img src={assets.logo} className="w-36 cursor-pointer" />
+        <a href="/">
+          <img src={assets.logo} className="w-36 cursor-pointer" />
+        </a>
         <ul className="hidden sm:flex gap-5 text-sm text-gray-700">
           <li className="text-[16px] text-gray-600 active:text-black cursor-pointer  ">
             <a href="/">Home</a>
