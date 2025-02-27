@@ -101,13 +101,13 @@ function navBar() {
                 onClick={() => setVisible(false)}
                 className="text-[18px] text-gray-800 active:text-white active:bg-black  cursor-pointer py-2  "
               >
-                <a href="/">About</a>
+                <a href="/about">About</a>
               </li>
               <li
                 onClick={() => setVisible(false)}
                 className="text-[18px] text-gray-800  active:text-white active:bg-black cursor-pointer py-2 "
               >
-                <a href="/">Contact</a>
+                <a href="/contact">Contact</a>
               </li>
             </ul>
           </div>
